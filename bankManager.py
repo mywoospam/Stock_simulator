@@ -69,9 +69,13 @@ class Bank:
             else:                    self.__trade[name] = [trade_info]
             self.__money -= price*amount
             return True
-        else: return False
+        else:
+            print("돈 부족으로 매수 실패")
+            return False
     def sellStock(self, name, price, amount):  #성공시 true 반환
         if name not in self.__stock:
+            print(self.__stock)
+            print(name)
             return False
         if self.__stock[name] >= amount:
             self.__stock[name] -= amount
@@ -83,4 +87,7 @@ class Bank:
             if name in self.__trade: self.__trade[name].append(trade_info)
             else:                    self.__trade[name] = [trade_info]
             self.__money += amount * price
-        else: return False
+            return True
+        else:
+            print("수량 부족으로 매도 실패")
+            return False
